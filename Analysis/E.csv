@@ -1,0 +1,6 @@
+Employee,Position,Current Status,Successor,Future Status
+"Sauce, John",Machine Learning Engineer,Resigning,"Eleven, Seven",
+"Smith, Jason",Tech Lead,Resigning,Peterson Camille,
+"Eleven, Seven",Data Scientist,Resigning,,Machine Learning Engineer
+"Peterson, Camille",Data Analyst,Promoting,,Tech Lead
+"Chi, Ting Su",System Architecture,Promoting,,Pipeline Monitor
