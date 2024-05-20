@@ -1,5 +1,5 @@
 <?php
-$connection = mysqli_connect("localhost", "root", "pdjdde5i5njkea8", "succession");
+$connection = mysqli_connect("localhost", "root", "", "succession");
 
 // Check connection
 if (!$connection) {

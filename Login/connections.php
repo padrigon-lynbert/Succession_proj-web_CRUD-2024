@@ -1,7 +1,6 @@
 <?php
-$connection = mysqli_connect("localhost", "root", "pdjdde5i5njkea8", "succession");
+$connection = mysqli_connect("localhost", "root", "", "succession");
 
-// Check connection
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -18,9 +17,7 @@ if ($result) {
     // Check if there are rows returned
     echo("<br>");
     if (mysqli_num_rows($result) > 0) {
-        // Loop through each row and display the data
         while ($row = mysqli_fetch_assoc($result)) {
-            // Print or process the data as needed
             print_r($row);
         }
     } else {
@@ -30,6 +27,5 @@ if ($result) {
     echo "Error retrieving data: " . mysqli_error($connection);
 }
 
-// Close the result set
 mysqli_free_result($result);
 ?>

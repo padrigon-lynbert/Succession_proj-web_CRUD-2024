@@ -1,4 +1,4 @@
-<?php //user.php
+<?php 
     include("connection.php");
 
     if (isset($_POST['submit']))
@@ -8,19 +8,16 @@
         $current_position = $_POST['current_position'];
         $promotion_to = $_POST['promotion_to'];
 
-        // Prepare the SQL statement with placeholders
         $sql = "INSERT INTO employee (fname, lname, current_position, promotion_to) VALUES (?, ?, ?, ?)";
 
         // Prepare and bind parameters
         $stmt = mysqli_prepare($connection, $sql);
         mysqli_stmt_bind_param($stmt, "ssss", $fname, $lname, $current_position, $promotion_to);
 
-        // Execute the statement
         $result = mysqli_stmt_execute($stmt);
 
         if ($result)
         {
-            // echo "Data inserted";
             header('location:AdminPage.php');
         }
         else
@@ -28,7 +25,6 @@
             die("Insertion failed: " . mysqli_error($connection));
         }
 
-        // Close the statement
         mysqli_stmt_close($stmt);
     }
 ?>
