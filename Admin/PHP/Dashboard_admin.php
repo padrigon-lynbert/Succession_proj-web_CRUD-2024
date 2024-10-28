@@ -1,5 +1,44 @@
 <?php
     include("auth_dashboard.php");    
+
+
+    // Check if the form is submitted via POST
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Iterate through each student's attendance and recitation input
+        foreach ($_POST['recitation'] as $studentID => $recitationScore) {
+            // Get the corresponding attendance status
+            $attendanceStatus = $_POST['attendance'][$studentID];
+
+            // Prepare the SQL query to update both recitation and attendance
+            $sql = "UPDATE `student` SET `Recitation` = ?, `Attendance` = ? WHERE `studentID` = ?";
+
+            // Use prepared statements for security
+            if ($stmt = mysqli_prepare($connection, $sql)) {
+                // Bind the parameters: "dsi" (double, string, integer)
+                mysqli_stmt_bind_param($stmt, "dsi", $recitationScore, $attendanceStatus, $studentID);
+
+                // Execute the query
+                if (mysqli_stmt_execute($stmt)) {
+                    echo "Updated student ID: " . $studentID . "<br>";
+                } else {
+                    echo "Error updating student ID: " . $studentID . "<br>";
+                }
+
+                // Close the prepared statement
+                mysqli_stmt_close($stmt);
+            } else {
+                echo "Error preparing the statement.<br>";
+            }
+        }
+
+        // Close the database connection
+        mysqli_close($connection);
+
+        // Redirect back to the attendance page after updating
+       header("Location: /Storage/Admin/PHP/Dashboard_admin.php");
+
+        exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,59 +98,71 @@
 
 
     <!-- attendance table -->
-
-    <section id="attendance">
+    <section id="attendance" style="margin: 10px 10px;">
 
         <h1 style="margin: 100px;">Attendance Table</h1>
-    
-        <table class="table my-5" style="margin-left: 50px;">
-            <thead>
-                <tr>
-                <th scope="col">Student #</th>
-                <th scope="col">Fname</th>
-                <th scope="col">Lname</th>
-                <th scope="col">Mname</th>
-                <th scope="col">Recitation</th>
-                <th scope="col">Attendance</th>
-                </tr>
-            </thead>
-    
-            <tbody>
-                <?php
-                    $sql = "select * from `student`";
-                    $result = mysqli_query($connection, $sql);
-    
-                    if($result)
-                    {
-                        while($row = mysqli_fetch_assoc($result))
+
+        <!-- Wrap the table in a form -->
+        <form method="POST" action="/Storage/Admin/PHP/Dashboard_admin.php">
+            <table class="table my-5" style="margin-left: 50px;">
+                <thead>
+                    <tr>
+                        <th scope="col">Student #</th>
+                        <th scope="col">Fname</th>
+                        <th scope="col">Lname</th>
+                        <th scope="col">Mname</th>
+                        <th scope="col">Recitation</th>
+                        <th scope="col">Attendance</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                        $sql = "SELECT * FROM `student`";
+                        $result = mysqli_query($connection, $sql);
+
+                        if($result) 
                         {
-                            $id = $row['studentID'];
-                            $fname = $row['Firstname'];
-                            $lname = $row['Lastname'];
-                            $mname = $row['Middlename'];
-                            $recitation = $row['Recitation'];
-                            $attendance = $row['Attendance'];
-                            echo '<tr>
-                                <th scope="row">'.$id.'</th>
-                                <td>'.$fname.'</td>
-                                <td>'.$lname.'</td>
-                                <td>'.$mname.'</td>
-                                <td>'.$recitation.'</td>
-                                <td>'.$attendance.'</td>
-    
+                            while($row = mysqli_fetch_assoc($result))
+                            {
+                                $id = $row['studentID'];
+                                $fname = $row['Firstname'];
+                                $lname = $row['Lastname'];
+                                $mname = $row['Middlename'];
+                                $recitation = $row['Recitation'];
+                                $attendance = $row['Attendance'];
+
+                                echo '<tr>
+                                    <th scope="row">'.$id.'</th>
+                                    <td>'.$fname.'</td>
+                                    <td>'.$lname.'</td>
+                                    <td>'.$mname.'</td>
+                                    <td>
+                                        <input type="number" step="0.01" class="form-control" name="recitation['.$id.']" value="'.$recitation.'" />
+                                    </td>
+                                    <td>
+                                        <select class="form-select" name="attendance['.$id.']">
+                                            <option value="Present" '.($attendance == 'Present' ? 'selected' : '').'>Present</option>
+                                            <option value="Late" '.($attendance == 'Late' ? 'selected' : '').'>Late</option>
+                                            <option value="Excuse" '.($attendance == 'Excuse' ? 'selected' : '').'>Excuse</option>
+                                            <option value="Absent" '.($attendance == 'Absent' ? 'selected' : '').'>Absent</option>
+                                        </select>
+                                    </td>
                                 </tr>';
                             }
-                       
-                        // echo $row['lname'];
-                    }
-                ?>
-    
-                
-               
-            </tbody>
-        </table>
-
+                        }
+                    ?>
+                </tbody>
+            </table>
+            
+            <!-- Add a submit button and align it to the right -->
+            <div style="text-align: right; margin-right: 50px; margin: 20px 20px;">
+                <button type="submit" class="btn btn-primary">Update Attendance & Recitation</button>
+            </div>
+        </form>
     </section>
+
+
 
 
 
