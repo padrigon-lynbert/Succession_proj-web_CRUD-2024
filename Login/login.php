@@ -1,55 +1,6 @@
 <?php
-include("connections.php");
-
-$Email = $password = "";
-$EmailErr = $passwordErr = "";
-
-// If form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate email
-    if (empty($_POST["email"])) {
-        $EmailErr = "Email is required";
-    } else {
-        $Email = $_POST["email"];
-    }
-    // Validate password
-    if (empty($_POST["password"])) {
-        $passwordErr = "Password is required";
-    } else {
-        $password = $_POST["password"];
-    }
-
-    // If there are no validation errors
-    if (empty($EmailErr) && empty($passwordErr)) {
-        // Query to validate user
-        $sql = "SELECT * FROM login_table WHERE username='$Email' AND password='$password'";
-        $result = mysqli_query($connection, $sql);
-
-        // Check if a matching record is found
-        if ($result && mysqli_num_rows($result) == 1) {
-            $row = mysqli_fetch_assoc($result);
-            // Check if the user is admin or user
-            if ($row['username'] === 'admin') {
-                // Redirect to admin page
-                header("Location: /Storage/Admin/PHP/Admin-Dashboard.php");
-                exit(); // Ensure no further execution after redirection
-            } elseif ($row['username'] === 'user') {
-                // Redirect to user page
-                header("Location: /Storage/Dashboard/PHP/Dashboard.php");
-                exit(); // Ensure no further execution after redirection
-            } else {
-                echo "<br>Invalid username or password!";
-            }
-        } else {
-            echo "<br>Invalid username or password!";
-        }
-    }
-}
-
-// Close the connection
-mysqli_close($connection);
+    include("auth.php")
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,17 +19,25 @@ mysqli_close($connection);
                 <div class="col-12 col-sm-8 col-md-6 mx-auto">
                     <div class="card border-0 shadow">
                         <div class="card-body text-center">
-                            <png class="mx-auto my-3 px-2"><img width="250" height="250" src="/Storage/Login/images/user.png" alt="" style="padding: 50px;"></png>
+                            <img width="250" height="250" src="/Storage/Login/images/user.png" alt="" style="padding: 50px;">
     
                             <form method="POST" action="">
-                                <input type="text" name="email" class="form-control my-3 py-2" placeholder="Email">
-                                <span class="error"><?php echo $EmailErr;?></span>
+                                <input type="text" name="username" class="form-control my-3 py-2" placeholder="Username" value="<?php echo htmlspecialchars($username); ?>">
+                                <span class="error"><?php echo $usernameErr;?></span>
+                                
+                                <input type="text" name="email" class="form-control my-3 py-2" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>">
+                                <span class="error"><?php echo $emailErr;?></span>
+                                
                                 <input type="password" name="password" class="form-control my-3 py-2" placeholder="Password">
                                 <span class="error"><?php echo $passwordErr;?></span>
     
                                 <div class="text-center mt-3" style="padding-top: 50px;">
                                     <button type="submit" class="btn btn-primary">Login</button>
                                 </div>
+
+                                <?php if (!empty($loginErr)): ?>
+                                    <div class="text-danger mt-3"><?php echo $loginErr; ?></div>
+                                <?php endif; ?>
     
                                 <div class="text-center mt-3">
                                     <a href="#" class="nav-link" style="padding: 5px;">Logging Errors?</a>
@@ -91,8 +50,6 @@ mysqli_close($connection);
         </div>
     </section>
     
-
     <script src="/Storage/Boostrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

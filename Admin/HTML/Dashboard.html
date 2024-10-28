@@ -3,25 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Storage/Boostrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/Storage/Dashboard/CSS/style.css">
-    <title>Admin-Dashboard</title>
+    <link rel="stylesheet" href="/Boostrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Dashboard/CSS/style.css">
+    <title>Dashboard</title>
 </head>
 <body>
-
-    <?php
-        $connection = mysqli_connect("localhost", "root", "pdjdde5i5njkea8", "succession");
-
-        if (!$connection) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-    ?>
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-white sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="/Storage/Dashboard/Images/s-w.png" alt="">
+                <img src="/Dashboard/Images/s-w.png" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,14 +45,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#blog">Blog</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="AdminPage.php">Admin Page</a>
-                    </li>
                 </ul>
-                <a href="/Storage/Login/login.php" class="btn btn-brand ms-lg-3">Download</a>
+                <a href="#" class="btn btn-brand ms-lg-3">Download</a>
             </div>
         </div>
     </nav>
+
 
     <!-- HERO -->
     <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
@@ -79,58 +69,6 @@
         </div>
     </section>
 
-
-    <!-- table -->
-    <h1 style="margin: 100px;">Promotion Table</h1>
-    <table class="table my-5" style="margin-left: 50px;">
-        <thead>
-            <tr>
-            <th scope="col">Index #</th>
-            <th scope="col">Fname</th>
-            <th scope="col">Lname</th>
-            <th scope="col">current_position</th>
-            <th scope="col">Promoted to</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <?php
-                $sql = "select * from `employee`";
-                $result = mysqli_query($connection, $sql);
-
-                if($result)
-                {
-                    while($row = mysqli_fetch_assoc($result))
-                    {
-                        $id = $row['id'];
-                        $fname = $row['fname'];
-                        $lname = $row['lname'];
-                        $current_position = $row['current_position'];
-                        $promotion_to = $row['promotion_to'];
-                        echo '<tr>
-                            <th scope="row">'.$id.'</th>
-                            <td>'.$fname.'</td>
-                            <td>'.$lname.'</td>
-                            <td>'.$current_position.'</td>
-                            <td>'.$promotion_to.'</td>
-
-                            </tr>';
-                        }
-                   
-                    // echo $row['lname'];
-                }
-            ?>
-
-            
-           
-        </tbody>
-    </table>
-
-
-
-
-
-
     <!-- ABOUT -->
     <section id="about" class="top-only-padding">
         <div class="container">
@@ -145,14 +83,14 @@
             </div>
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-6" data-aos="fade-down" data-aos-delay="50">
-                    <img src="/Storage/Analysis/Figures/Result.png" alt="">
+                    <img src="/Analysis/Figures/Result.png" alt="">
                 </div>
                 <div data-aos="fade-down" data-aos-delay="150" class="col-lg-5">
                     <h1>Promotional Bias</h1>
                     <p class="mt-3 mb-4">From a machine learning model we have identified that there are things that can affect promotion.</p>
                     <div class="d-flex pt-4 mb-3">
                         <div class="iconbox me-4">
-                            <img src="/Storage/Dashboard/icons/clipboard-check-fill.svg" src="" class="icon-img">
+                            <img src="/Dashboard/icons/clipboard-check-fill.svg" src="" class="icon-img">
                         </div>
                         <div>
                             <h5>Educational Background</h5>
@@ -161,7 +99,7 @@
                     </div>
                     <div class="d-flex mb-3">
                         <div class="iconbox me-4">
-                            <img src="/Storage/Dashboard/icons/person-workspace.svg" class="icon-img">
+                            <img src="/Dashboard/icons/person-workspace.svg" class="icon-img">
                         </div>
                         <div>
                             <h5>Work Background</h5>
@@ -170,7 +108,7 @@
                     </div>
                     <div class="d-flex">
                         <div class="iconbox me-4">
-                            <img src="/Storage/Dashboard/icons/smartwatch.svg" class="icon-img">
+                            <img src="/Dashboard/icons/smartwatch.svg" class="icon-img">
                         </div>
                         <div>
                             <h5>Age</h5>
@@ -186,10 +124,10 @@
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-6" data-aos="fade-down" data-aos-delay="50">
-                    <img src="/Storage/Analysis/Figures/Coefficient_of_features.png" alt="">
+                    <img src="/Analysis/Figures/Coefficient_of_features.png" alt="">
                 </div>
                 <div data-aos="fade-down" data-aos-delay="150" class="col-lg-5">
-                    <img src="/Storage/Analysis/Figures/tail_predictor.png" alt="">
+                    <img src="/Analysis/Figures/tail_predictor.png" alt="">
                 </div>
             </div>
         </div>
@@ -199,14 +137,15 @@
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-6" data-aos="fade-down" data-aos-delay="50">
-                    <img src="/Storage/Analysis/Figures/head_predictor.png" alt="">
+                    <img src="/Analysis/Figures/head_predictor.png" alt="">
                 </div>
                 <div data-aos="fade-down" data-aos-delay="150" class="col-lg-5">
-                    <img src="/Storage/Analysis/Figures/no_predictor.png" alt="">
+                    <img src="/Analysis/Figures/no_predictor.png" alt="">
                 </div>
             </div>
         </div>
-    </section>
+    </section> <br><br><br>
+
 
     <!-- SERVICES -->
     <section id="services" class="section-padding border-top">
@@ -225,7 +164,7 @@
                     <div class="service theme-shadow p-lg-5 p-4">
                         <div class="services-img">
                             <!-- <img src="/Storage/Dashb/fonts/services/team-leader.png" alt=""> -->
-                            <img src="/Storage/Dashboard/Images/services/team-leader.png" alt="">
+                            <img src="/Dashboard/Images/services/team-leader.png" alt="">
                         </div>
                         <h5 class="mt-4 mb-3">Leadership</h5>
                         <p>Master essential leadership skills for success in today's business environment, with books recommendations and learning resources.</p>
@@ -234,7 +173,7 @@
                 <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="250">
                     <div class="service theme-shadow p-lg-5 p-4">
                         <div class="services-img">
-                            <img src="/Storage/Dashboard/Images/services/monitor.png" alt="">
+                            <img src="/Dashboard/Images/services/monitor.png" alt="">
                         </div>
                         <h5 class="mt-4 mb-3">Data Computation and Visualization</h5>
                         <p>Learn to derive insights from data with computation and visualization techniques.</p>
@@ -243,7 +182,7 @@
                 <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="350">
                     <div class="service theme-shadow p-lg-5 p-4">
                         <div class="services-img">
-                            <img src="/Storage/Dashboard/Images/services/world-wide-web.png" alt="">
+                            <img src="/Dashboard/Images/services/world-wide-web.png" alt="">
                         </div>
                         <h5 class="mt-4 mb-3">Web Development and Engineering</h5>
                         <p>Build dynamic websites and applications with cutting-edge web development skills.</p>
@@ -252,7 +191,7 @@
                 <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="450">
                     <div class="service theme-shadow p-lg-5 p-4">
                         <div class="services-img">
-                            <img src="/Storage/Dashboard/Images/services/software.png" alt="">
+                            <img src="/Dashboard/Images/services/software.png" alt="">
                         </div>
                         <h5 class="mt-4 mb-3">Software Development and Engineering</h5>
                         <p>Advance your software engineering expertise for building robust solutions.</p>
@@ -261,7 +200,7 @@
                 <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="550">
                     <div class="service theme-shadow p-lg-5 p-4">
                         <div class="services-img">
-                            <img src="/Storage/Dashboard/Images/services/digital-marketing.png" alt="">
+                            <img src="/Dashboard/Images/services/digital-marketing.png" alt="">
                         </div>
                         <h5 class="mt-4 mb-3">Marketing</h5>
                         <p>Gain expertise in effective marketing strategies and digital engagement, tought by professionals with experience.</p>
@@ -270,7 +209,7 @@
                 <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="650">
                     <div class="service theme-shadow p-lg-5 p-4">
                         <div class="services-img">
-                            <img src="/Storage/Dashboard/Images/services/algorithm.png" alt="">
+                            <img src="/Dashboard/Images/services/algorithm.png" alt="">
                         </div>
                         <h5 class="mt-4 mb-3">Machine Learning and Deeplearning</h5>
                         <p>Explore AI frontiers with courses in machine and deep learning.</p>
@@ -280,9 +219,8 @@
         </div>
     </section>
 
-
-    <!-- COUNTER -->
-    <section id="counter" class="section-padding">
+     <!-- COUNTER -->
+     <section id="counter" class="section-padding">
         <div class="container text-center">
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6" data-aos="fade-down" data-aos-delay="150">
@@ -323,23 +261,43 @@
                     <div class="portfolio-item image-zoom">
                         <div class="image-zoom-wrapper">
                             <!-- <img src="/Storage/Dashb/imgs/test^2.png"> -->
-                            <img src="/Storage/Dashboard/Images/test^2.png">
+                            <img src="/Dashboard/Images/test^2.png">
                         </div>
-                        <a href="/Storage/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Storage/Dashboard/icons/portfolio/search.svg"></i></a>
+                        <a href="/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Dashboard/icons/portfolio/search.svg"></i></a>
                     </div>
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="/Dashboard/Images/test^2.png" alt="">
+                        </div>
+                        <a href="/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Dashboard/icons/portfolio/search.svg"></i></a>
+                    </div>
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="/Dashboard/Images/test^2.png" alt="">
+                        </div>
+                        <a href="/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Dashboard/icons/portfolio/search.svg"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="150">
                     <div class="portfolio-item image-zoom">
                         <div class="image-zoom-wrapper">
                             <!-- <img src="/Storage/Dashb/imgs/test^2.png"> -->
-                            <img src="/Storage/Dashboard/Images/test^2.png">
+                            <img src="/Dashboard/Images/test^2.png">
                         </div>
-                        <a href="/Storage/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Storage/Dashboard/icons/portfolio/search.svg"></i></a>
+                        <a href="/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Dashboard/icons/portfolio/search.svg"></i></a>
                     </div>
-                    <div class="portfolio-item image-zoom">
+                    <div class="portfolio-item image-zoom mt-4">
                         <div class="image-zoom-wrapper">
-                            <!-- <img src="/Storage/Dashb/imgs/test^2.png"> -->
-                            <img src="/Storage/Dashboard/Images/test^2.png">
+                            <img src="/Dashboard/Images/test^2.png" alt="">
                         </div>
-                        <a href="/Storage/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Storage/Dashboard/icons/portfolio/search.svg"></i></a>
+                        <a href="/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Dashboard/icons/portfolio/search.svg"></i></a>
+                    </div>
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="/Dashboard/Images/test^2.png" alt="">
+                        </div>
+                        <a href="/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Dashboard/icons/portfolio/search.svg"></i></a>
                     </div>
                 </div>
 
@@ -347,55 +305,31 @@
                     <div class="portfolio-item image-zoom">
                         <div class="image-zoom-wrapper">
                             <!-- <img src="/Storage/Dashb/imgs/test^2.png"> -->
-                            <img src="/Storage/Dashboard/Images/test^2.png">
+                            <img src="/Dashboard/Images/test^2.png">
                         </div>
-                        <a href="/Storage/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Storage/Dashboard/icons/portfolio/search.svg"></i></a>
+                        <a href="/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Dashboard/icons/portfolio/search.svg"></i></a>
                     </div>
-                    <div class="portfolio-item image-zoom">
+                    <div class="portfolio-item image-zoom mt-4">
                         <div class="image-zoom-wrapper">
-                            <!-- <img src="/Storage/Dashb/imgs/test^2.png"> -->
-                            <img src="/Storage/Dashboard/Images/test^2.png">
+                            <img src="/Dashboard/Images/test^2.png" alt="">
                         </div>
-                        <a href="/Storage/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Storage/Dashboard/icons/portfolio/search.svg"></i></a>
+                        <a href="/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Dashboard/icons/portfolio/search.svg"></i></a>
                     </div>
-                    <div class="portfolio-item image-zoom">
+                    <div class="portfolio-item image-zoom mt-4">
                         <div class="image-zoom-wrapper">
-                            <!-- <img src="/Storage/Dashb/imgs/test^2.png"> -->
-                            <img src="/Storage/Dashboard/Images/test^2.png">
+                            <img src="/Dashboard/Images/test^2.png" alt="">
                         </div>
-                        <a href="/Storage/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Storage/Dashboard/icons/portfolio/search.svg"></i></a>
+                        <a href="/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Dashboard/icons/portfolio/search.svg"></i></a>
                     </div>
                 </div>
-                <div class="col-md-4" data-aos="fade-down" data-aos-delay="150">
-                    <div class="portfolio-item image-zoom">
-                        <div class="image-zoom-wrapper">
-                            <!-- <img src="/Storage/Dashb/imgs/test^2.png"> -->
-                            <img src="/Storage/Dashboard/Images/test^2.png">
-                        </div>
-                        <a href="/Storage/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Storage/Dashboard/icons/portfolio/search.svg"></i></a>
-                    </div>
-                    <div class="portfolio-item image-zoom">
-                        <div class="image-zoom-wrapper">
-                            <!-- <img src="/Storage/Dashb/imgs/test^2.png"> -->
-                            <img src="/Storage/Dashboard/Images/test^2.png">
-                        </div>
-                        <a href="/Storage/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Storage/Dashboard/icons/portfolio/search.svg"></i></a>
-                    </div>
-                    <div class="portfolio-item image-zoom">
-                        <div class="image-zoom-wrapper">
-                            <!-- <img src="/Storage/Dashb/imgs/test^2.png"> -->
-                            <img src="/Storage/Dashboard/Images/test^2.png">
-                        </div>
-                        <a href="/Storage/Dashboard/Images/test^2.png" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"><img class="icon-img" src="/Storage/Dashboard/icons/portfolio/search.svg"></i></a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
 
 
-    <!-- REVIEW -->
-    <section id="reviews" class="section-padding bg-light">
+     <!-- REVIEW -->
+     <section id="reviews" class="section-padding bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
@@ -411,38 +345,16 @@
                     <div class="review">
                         <div class="review-head p-4 bg-white theme-shadow">
                             <div class="text-warning">
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
                             </div>
                             <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
                         </div>
                         <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="/Storage/Login/images/user.png" style="height: 50px;">
-                            <div class="ms-3">
-                                <h5>Dianne Russell</h5>
-                                <small>UX Architect</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="150">
-                    <div class="review">
-                        <div class="review-head p-4 bg-white theme-shadow">
-                            <div class="text-warning">
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
-                            </div>
-                            <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
-                        </div>
-                        <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="/Storage/Login/images/user.png" style="height: 50px;">
+                            <img class="rounded-circle" src="/Login/images/user.png" style="height: 50px;">
                             <div class="ms-3">
                                 <h5>Dianne Russell</h5>
                                 <small>UX Architect</small>
@@ -454,16 +366,16 @@
                     <div class="review">
                         <div class="review-head p-4 bg-white theme-shadow">
                             <div class="text-warning">
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-half.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
                             </div>
                             <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
                         </div>
                         <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="/Storage/Login/images/user.png" style="height: 50px;">
+                            <img class="rounded-circle" src="/Login/images/user.png" style="height: 50px;">
                             <div class="ms-3">
                                 <h5>Dianne Russell</h5>
                                 <small>UX Architect</small>
@@ -471,20 +383,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="150">
+                
+                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="350">
                     <div class="review">
                         <div class="review-head p-4 bg-white theme-shadow">
                             <div class="text-warning">
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-half.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
                             </div>
                             <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
                         </div>
                         <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="/Storage/Login/images/user.png" style="height: 50px;">
+                            <img class="rounded-circle" src="/Login/images/user.png" style="height: 50px;">
                             <div class="ms-3">
                                 <h5>Dianne Russell</h5>
                                 <small>UX Architect</small>
@@ -492,20 +405,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="150">
+                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="450">
                     <div class="review">
                         <div class="review-head p-4 bg-white theme-shadow">
                             <div class="text-warning">
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
                             </div>
                             <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
                         </div>
                         <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="/Storage/Login/images/user.png" style="height: 50px;">
+                            <img class="rounded-circle" src="/Login/images/user.png" style="height: 50px;">
                             <div class="ms-3">
                                 <h5>Dianne Russell</h5>
                                 <small>UX Architect</small>
@@ -513,20 +426,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="150">
+                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="550">
                     <div class="review">
                         <div class="review-head p-4 bg-white theme-shadow">
                             <div class="text-warning">
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-fill.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
-                                <i class="ri-star-fill"><img src="/Storage/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
+                            </div>
+                            
+                            <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
+                        </div>
+                        <div class="review-person mt-4 d-flex align-items-center">
+                            <img class="rounded-circle" src="/Login/images/user.png" style="height: 50px;">
+                            <div class="ms-3">
+                                <h5>Dianne Russell</h5>
+                                <small>UX Architect</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="650">
+                    <div class="review">
+                        <div class="review-head p-4 bg-white theme-shadow">
+                            <div class="text-warning">
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-fill.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
+                                <i class="ri-star-fill"><img src="/Dashboard/icons/star-empty.svg" alt=""></i>
+                                
                             </div>
                             <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
                         </div>
                         <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="/Storage/Login/images/user.png" style="height: 50px;">
+                            <img class="rounded-circle" src="/Login/images/user.png" style="height: 50px;">
                             <div class="ms-3">
                                 <h5>Dianne Russell</h5>
                                 <small>UX Architect</small>
@@ -539,8 +475,9 @@
     </section>
 
 
-     <!-- TEAM -->
-     <section id="team" class="section-padding">
+
+    <!-- TEAM -->
+    <section id="team" class="section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
@@ -555,7 +492,7 @@
                 <div class="col-md-3" data-aos="fade-down" data-aos-delay="150">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img src="/Storage/Dashboard/Images/cats/c2.jpg" style="height: 250px;" alt="">
+                            <img src="/Dashboard/Images/cats/c2.jpg" style="height: 250px;" alt="">
                         </div>
                         <div class="team-member-content">
                             <!-- <h4 class="text-white">Ninja Engineer, Chibi</h4> -->
@@ -568,7 +505,7 @@
                 <div class="col-md-3" data-aos="fade-down" data-aos-delay="250">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img src="/Storage/Dashboard/Images/cats/c1.jpg" style="height: 250px;" alt="">
+                            <img src="/Dashboard/Images/cats/c1.jpg" style="height: 250px;" alt="">
 
                         </div>
                         <div class="team-member-content">
@@ -582,7 +519,7 @@
                 <div class="col-md-3" data-aos="fade-down" data-aos-delay="350">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img src="/Storage/Dashboard/Images/cats/c3.jpg" style="height: 250px;" alt="">
+                            <img src="/Dashboard/Images/cats/c3.jpg" style="height: 250px;" alt="">
 
                         </div>
                         <div class="team-member-content">
@@ -597,7 +534,7 @@
                 <div class="col-md-3" data-aos="fade-down" data-aos-delay="450">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img src="/Storage/Dashboard/Images/cats/c4.jpg" style="height: 250px;" alt="">
+                            <img src="/Dashboard/Images/cats/c4.jpg" style="height: 250px;" alt="">
 
                         </div>
                         <div class="team-member-content">
@@ -612,7 +549,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- contact -->
     <section class="section-padding bg-light" id="contact">
@@ -653,6 +589,7 @@
         </div>
     </section>
 
+
     <!-- BLOG -->
     <section id="blog" class="section-padding">
         <div class="container">
@@ -669,7 +606,7 @@
                 <div class="col-md-4" data-aos="fade-down" data-aos-delay="150">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img style="height: 500px;" src="/Storage/Dashboard/Images/news/Morgan Stanley’s CEO Gives Himself an A-Minus.jpg" alt="">                        </div>
+                            <img style="height: 500px;" src="/Dashboard/Images/news/Morgan Stanley’s CEO Gives Himself an A-Minus.jpg" alt="">                        </div>
                         <h5 class="mt-4">Web Design 2022</h5>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi quos magni!</p>
                         <a href="#">Read More</a>
@@ -678,7 +615,7 @@
                 <div class="col-md-4" data-aos="fade-down" data-aos-delay="250">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img style="height: 500px;" src="/Storage/Dashboard/Images/news/CEO Today Magazine.jpg" alt="">
+                            <img style="height: 500px;" src="/Dashboard/Images/news/CEO Today Magazine.jpg" alt="">
                         </div>
                         <h5 class="mt-4">Web Design 2022</h5>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi quos magni!</p>
@@ -688,7 +625,7 @@
                 <div class="col-md-4" data-aos="fade-down" data-aos-delay="350">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img style="height: 500px;" src="/Storage/Dashboard/Images/news/97 Best Business Motivational Quotes & Memes _ CLMB Marketing.jpg" alt="">
+                            <img style="height: 500px;" src="/Dashboard/Images/news/97 Best Business Motivational Quotes & Memes _ CLMB Marketing.jpg" alt="">
                         </div>
                         <h5 class="mt-4">Web Design 2022</h5>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi quos magni!</p>
@@ -699,21 +636,24 @@
         </div>
     </section>
 
-      
+
+
+
+    
 <!-- FOOTER -->
 <footer class="bg-dark">
     <div class="footer-top">
         <div class="container">
             <div class="row gy-5">
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#"><img src="/Storage/Dashboard/Images/s-w.png" alt=""></a>
+                    <a href="#"><img src="/Dashboard/Images/s-w.png" alt=""></a>
                     <div class="line"></div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, hic!</p>
                     <div class="social-icons">
-                        <a href="#"><i class="ri-twitter-fill"><img class="icon-img3" src="/Storage/Dashboard/Images/footer/github.svg" alt=""></i></a>
-                        <a href="#"><i class="ri-twitter-fill"><img class="icon-img3" src="/Storage/Dashboard/Images/footer/facebook.svg" alt=""></i></a>
-                        <a href="#"><i class="ri-twitter-fill"><img class="icon-img3" src="/Storage/Dashboard/Images/footer/instagram.svg" alt=""></i></a>
-                        <a href="#"><i class="ri-twitter-fill"><img class="icon-img3" src="/Storage/Dashboard/Images/footer/info-circle.svg" alt=""></i></a>
+                        <a href="#"><i class="ri-twitter-fill"><img class="icon-img3" src="/Dashboard/Images/footer/github.svg" alt=""></i></a>
+                        <a href="#"><i class="ri-twitter-fill"><img class="icon-img3" src="/Dashboard/Images/footer/facebook.svg" alt=""></i></a>
+                        <a href="#"><i class="ri-twitter-fill"><img class="icon-img3" src="/Dashboard/Images/footer/instagram.svg" alt=""></i></a>
+                        <a href="#"><i class="ri-twitter-fill"><img class="icon-img3" src="/Dashboard/Images/footer/info-circle.svg" alt=""></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
@@ -769,6 +709,10 @@
 
 
 
-    <script src="/Storage/Boostrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+    <script src="/Boostrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

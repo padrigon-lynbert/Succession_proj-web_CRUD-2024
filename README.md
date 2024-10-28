@@ -4,9 +4,3 @@
 
 
 ! php, css, html, bootstrap, sql, python, matplotlib, pandas, numpy 
-
-<br>
-
-Succession project 2nd Year, CRUD, modality, local server, web pages, analytics
-
-Solo project 2024 web(crud)
